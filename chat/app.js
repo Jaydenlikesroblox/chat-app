@@ -90,9 +90,6 @@ const ELEMENTS = {
     // Background customization elements
     backgroundColorPicker: document.getElementById('background-color-picker'),
     resetBackgroundButton: document.getElementById('reset-background-button'),
-    backgroundImageInput: document.getElementById('background-image-input'),
-    backgroundImageLabel: document.getElementById('background-image-label'),
-    backgroundImageStatus: document.getElementById('background-image-status'),
 };
 
 // --- UTILITY & RENDER FUNCTIONS ---
@@ -137,7 +134,7 @@ const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 const currentTheme = localStorage.getItem("theme") || (prefersDarkScheme.matches ? "dark" : "light");
 
 // Apply initial theme
-document.body.className = currentTheme;
+document.documentElement.className = currentTheme;
 
 // Get the toggle button
 const themeToggle = document.querySelector("[data-theme-toggle]");
@@ -147,19 +144,19 @@ updateButtonText();
 
 // Listen for clicks on the toggle button
 themeToggle.addEventListener("click", () => {
-  let theme = document.body.className;
+  let theme = document.documentElement.className;
   if (theme === "dark") {
     theme = "light";
   } else {
     theme = "dark";
   }
-  document.body.className = theme;
+  document.documentElement.className = theme;
   localStorage.setItem("theme", theme);
   updateButtonText();
 });
 
 function updateButtonText() {
-  const currentTheme = document.body.className;
+  const currentTheme = document.documentElement.className;
   if (currentTheme === "dark") {
     themeToggle.textContent = "Change to light theme";
   } else {
@@ -624,87 +621,29 @@ function setupSocketListeners() {
 // --- BACKGROUND CUSTOMIZATION FUNCTIONS ---
 function applyChatBackground() {
     const chatWindow = ELEMENTS.chatWindow;
-    chatWindow.style.backgroundImage = ''; // Clear any previous image
     chatWindow.style.backgroundColor = ''; // Clear any previous color
 
-    if (state.chatBackgroundImage) {
-        chatWindow.style.backgroundImage = `url('${state.chatBackgroundImage}')`;
-    } else if (state.chatBackgroundColor) {
+    if (state.chatBackgroundColor) {
         chatWindow.style.backgroundColor = state.chatBackgroundColor;
     }
 }
 
 function resetChatBackground() {
     state.chatBackgroundColor = null;
-    state.chatBackgroundImage = null;
     localStorage.removeItem('chatBackgroundColor');
-    localStorage.removeItem('chatBackgroundImage');
     applyChatBackground();
     ELEMENTS.backgroundColorPicker.value = '#ffffff'; // Reset color picker
-    ELEMENTS.backgroundImageInput.value = ''; // Clear file input
-    ELEMENTS.backgroundImageLabel.textContent = 'Choose Image (Max 5MB)';
-    ELEMENTS.backgroundImageStatus.textContent = '';
 }
 
 window.handleBackgroundColorChange = (event) => {
     state.chatBackgroundColor = event.target.value;
-    state.chatBackgroundImage = null; // Clear image if color is selected
     localStorage.setItem('chatBackgroundColor', state.chatBackgroundColor);
-    localStorage.removeItem('chatBackgroundImage');
     applyChatBackground();
 };
 
-window.handleBackgroundImageSelect = (event) => {
-    const file = event.target.files[0];
-    if (!file) {
-        ELEMENTS.backgroundImageLabel.textContent = 'Choose Image (Max 5MB)';
-        ELEMENTS.backgroundImageStatus.textContent = '';
-        return;
-    }
 
-    if (file.size > 5 * 1024 * 1024) { // 5MB limit for background images
-        ELEMENTS.backgroundImageStatus.textContent = 'Image must be smaller than 5MB.';
-        ELEMENTS.backgroundImageInput.value = '';
-        return;
-    }
 
-    ELEMENTS.backgroundImageLabel.textContent = `Selected: ${file.name.substring(0, 15)}...`;
-    ELEMENTS.backgroundImageStatus.textContent = '';
-};
 
-window.applySelectedBackgroundImage = async () => {
-    const file = ELEMENTS.backgroundImageInput.files[0];
-    if (!file) {
-        ELEMENTS.backgroundImageStatus.textContent = 'No image selected.';
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append('chat-background', file);
-
-    try {
-        // Assuming a new API endpoint for background image uploads
-        const response = await fetch('/api/upload-background', {
-            method: 'POST',
-            headers: { 'x-user-id': state.userId },
-            body: formData,
-        });
-        if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message);
-        }
-        const data = await response.json();
-        state.chatBackgroundImage = data.fileUrl;
-        state.chatBackgroundColor = null; // Clear color if image is selected
-        localStorage.setItem('chatBackgroundImage', state.chatBackgroundImage);
-        localStorage.removeItem('chatBackgroundColor');
-        applyChatBackground();
-        showModal('Success', 'Background image applied successfully!');
-    } catch (error) {
-        ELEMENTS.backgroundImageStatus.textContent = error.message;
-        showModal('Upload Error', error.message);
-    }
-};
 
 // --- AUTHENTICATION ---
 
@@ -1003,22 +942,7 @@ window.handleChatMessageFileSelect = (event) => {
     ELEMENTS.filePreviewContainer.classList.remove('hidden');
 };
 
-window.logRtcStats = async () => {
-    if (!state.peerConnection) {
-        console.log("No active peer connection.");
-        return;
-    }
-    const stats = await state.peerConnection.getStats();
-    stats.forEach(report => {
-        if (report.type === 'outbound-rtp' && report.kind === 'audio') {
-            console.log('Outbound audio RTP stats:', report);
-        }
-        if (report.type === 'inbound-rtp' && report.kind === 'audio') {
-            console.log('Inbound audio RTP stats:', report);
-        }
-    });
-};
-""
+
 
 // --- TABS ---
 window.switchTab = (tab) => {
