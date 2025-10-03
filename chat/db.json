@@ -1,0 +1,96 @@
+{
+  "users": {
+    "user_c1e30697-0d20-4446-822b-ef39ad350b65": {
+      "id": "user_c1e30697-0d20-4446-822b-ef39ad350b65",
+      "email": "uiyufvuyiboku@gmail.com",
+      "password": "uyrfuyiuiotuf",
+      "username": "jayden",
+      "username_lower": "jayden",
+      "avatarUrl": "https://placehold.co/40x40/4f46e5/ffffff?text=U"
+    },
+    "user_f4e8b18a-650c-4f20-91a3-e1c65d00d8b5": {
+      "id": "user_f4e8b18a-650c-4f20-91a3-e1c65d00d8b5",
+      "email": "jayma8e84@gmail.com",
+      "password": "JAYDENFOUR",
+      "username": "Jayy",
+      "username_lower": "jayy",
+      "avatarUrl": "/uploads/avatar-user_f4e8b18a-650c-4f20-91a3-e1c65d00d8b5-bc24e2e4-1d30-4ab1-9cf7-387f0bed8d7c.png"
+    },
+    "user_8426dfba-1648-48b5-8bfc-bff46e5b8ac6": {
+      "id": "user_8426dfba-1648-48b5-8bfc-bff46e5b8ac6",
+      "email": "Jayden@gmail.com",
+      "password": "pgfvadlslhfk",
+      "username": "JAYDENfour",
+      "username_lower": "jaydenfour",
+      "avatarUrl": "/uploads/avatar-user_8426dfba-1648-48b5-8bfc-bff46e5b8ac6-eb1754a3-840e-430a-8d70-05cb5b20d9e2.png"
+    },
+    "user_c4ba64d2-ed61-425c-9aca-85b85bc21b2b": {
+      "id": "user_c4ba64d2-ed61-425c-9aca-85b85bc21b2b",
+      "email": "Melomate@gmail.com",
+      "password": "Ma8ema8e",
+      "username": "Melo",
+      "username_lower": "melo",
+      "avatarUrl": "https://placehold.co/40x40/4f46e5/ffffff?text=M"
+    },
+    "user_e6e733a7-4c11-42ca-9eef-ffbaa171fe56": {
+      "id": "user_e6e733a7-4c11-42ca-9eef-ffbaa171fe56",
+      "email": "dhsbshjssh@gmail.com",
+      "password": "ajshsnsbsh",
+      "username": "Jamal",
+      "username_lower": "jamal",
+      "avatarUrl": "https://placehold.co/40x40/4f46e5/ffffff?text=D"
+    }
+  },
+  "conversations": {
+    "user_1759341869203_user_c1e30697-0d20-4446-822b-ef39ad350b65": [
+      {
+        "id": "ff3f7a5f-3d53-4dc9-9e40-a1d85d220fed",
+        "userId": "user_1759341869203",
+        "text": "hi",
+        "timestamp": "2025-10-01T18:54:04.991Z"
+      },
+      {
+        "id": "8995873b-c62a-451b-9f8a-0b955f4f751b",
+        "userId": "user_c1e30697-0d20-4446-822b-ef39ad350b65",
+        "text": "hi",
+        "timestamp": "2025-10-01T18:54:14.966Z"
+      }
+    ],
+    "user_8426dfba-1648-48b5-8bfc-bff46e5b8ac6_user_f4e8b18a-650c-4f20-91a3-e1c65d00d8b5": [
+      {
+        "id": "30998a4f-5a26-4101-b0f7-e645d8e99699",
+        "userId": "user_f4e8b18a-650c-4f20-91a3-e1c65d00d8b5",
+        "text": "yo",
+        "fileUrl": null,
+        "timestamp": "2025-10-02T15:06:38.356Z",
+        "readBy": [
+          "user_8426dfba-1648-48b5-8bfc-bff46e5b8ac6"
+        ]
+      },
+      {
+        "id": "f199145b-62cd-4719-a9ac-9f4cc298acbc",
+        "userId": "user_8426dfba-1648-48b5-8bfc-bff46e5b8ac6",
+        "text": "yo",
+        "fileUrl": null,
+        "timestamp": "2025-10-02T15:06:43.109Z",
+        "readBy": [
+          "user_f4e8b18a-650c-4f20-91a3-e1c65d00d8b5"
+        ]
+      }
+    ]
+  },
+  "friends": {
+    "user_f4e8b18a-650c-4f20-91a3-e1c65d00d8b5": {
+      "user_8426dfba-1648-48b5-8bfc-bff46e5b8ac6": "user_8426dfba-1648-48b5-8bfc-bff46e5b8ac6_user_f4e8b18a-650c-4f20-91a3-e1c65d00d8b5"
+    },
+    "user_8426dfba-1648-48b5-8bfc-bff46e5b8ac6": {
+      "user_f4e8b18a-650c-4f20-91a3-e1c65d00d8b5": "user_8426dfba-1648-48b5-8bfc-bff46e5b8ac6_user_f4e8b18a-650c-4f20-91a3-e1c65d00d8b5"
+    },
+    "user_c4ba64d2-ed61-425c-9aca-85b85bc21b2b": {},
+    "user_e6e733a7-4c11-42ca-9eef-ffbaa171fe56": {}
+  },
+  "pendingRequests": {
+    "user_f4e8b18a-650c-4f20-91a3-e1c65d00d8b5": {},
+    "user_c4ba64d2-ed61-425c-9aca-85b85bc21b2b": {}
+  }
+}

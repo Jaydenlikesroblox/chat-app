@@ -1,0 +1,97 @@
+/* Custom base styles for high-contrast dark mode */
+:root {
+    color-scheme: light;
+}
+.dark {
+    color-scheme: dark;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f9f9; /* Very light gray for light mode body */
+    min-height: 100vh;
+}
+.dark body {
+    background-color: #121212; /* Deep dark gray/almost black for dark mode body */
+}
+/* Adjusted height for mobile where input fields take up more vertical space */
+#chat-window {
+    height: calc(100vh - 14rem); /* Flexible height */
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+/* Ensure the main container on mobile takes up the full screen minus padding */
+#app-container.h-full {
+    min-height: calc(100vh - 2rem); 
+}
+
+.message-bubble {
+    max-width: 85%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+}
+/* Light Mode Styles */
+.message-self {
+    background-color: #4f46e5; /* Indigo-600 (kept for accent) */
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 2px;
+}
+.message-other {
+    background-color: #e0e0e0; /* Light gray for friend's message */
+    color: #1f2937; /* Dark text */
+    margin-right: auto;
+    border-bottom-left-radius: 2px;
+}
+/* Dark Mode Overrides */
+.dark .message-self {
+    background-color: #6366f1; /* Indigo-500 */
+}
+.dark .message-other {
+    background-color: #303030; /* Medium dark gray for friend's message */
+    color: #f1f5f9; /* Light text */
+}
+/* Scrollbar Styling */
+#chat-window::-webkit-scrollbar { width: 8px; }
+#chat-window::-webkit-scrollbar-thumb { background-color: #a5b4fc; border-radius: 10px; }
+#chat-window::-webkit-scrollbar-track { background: #f1f5f9; }
+.dark #chat-window::-webkit-scrollbar-thumb { background-color: #475569; }
+.dark #chat-window::-webkit-scrollbar-track { background: #0f172a; }
+
+/* Custom file input styling */
+.file-upload-container input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+.file-upload-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    background-color: #4f46e5;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.15s;
+}
+.file-upload-label:hover {
+    background-color: #4338ca;
+}
+
+/* Chat Background Styles */
+.chat-background {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Fallback color */
+    background-color: #f9f9f9; /* Light mode default */
+}
+
+.dark .chat-background {
+    background-color: #121212; /* Dark mode default */
+}
