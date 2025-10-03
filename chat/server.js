@@ -65,7 +65,12 @@ const upload = multer({
     }
 });
 
-
+const chatFileStorage = multer.diskStorage({
+    destination: './chat/uploads/',
+    filename: function (req, file, cb) {
+        cb(null, `chat-${req.user.id}-${uuidv4()}${path.extname(file.originalname)}`);
+    }
+});
 
 const uploadChatFile = multer({
     storage: chatFileStorage,
