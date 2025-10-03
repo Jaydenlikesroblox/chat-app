@@ -130,19 +130,42 @@ function toggleMobileView(showChat) {
 }
 window.handleBackToFriends = () => toggleMobileView(false);
 
-function initDarkMode() {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-        ELEMENTS.darkModeToggle.checked = true;
-    } else {
-        document.documentElement.classList.remove('dark');
-        ELEMENTS.darkModeToggle.checked = false;
-    }
+// Check for user's system preference on page load
+const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+// Check for saved theme in local storage or system preference
+const currentTheme = localStorage.getItem("theme") || (prefersDarkScheme.matches ? "dark" : "light");
+
+// Apply initial theme
+document.body.className = currentTheme;
+
+// Get the toggle button
+const themeToggle = document.querySelector("[data-theme-toggle]");
+
+// Update button text on load
+updateButtonText();
+
+// Listen for clicks on the toggle button
+themeToggle.addEventListener("click", () => {
+  let theme = document.body.className;
+  if (theme === "dark") {
+    theme = "light";
+  } else {
+    theme = "dark";
+  }
+  document.body.className = theme;
+  localStorage.setItem("theme", theme);
+  updateButtonText();
+});
+
+function updateButtonText() {
+  const currentTheme = document.body.className;
+  if (currentTheme === "dark") {
+    themeToggle.textContent = "Change to light theme";
+  } else {
+    themeToggle.textContent = "Change to dark theme";
+  }
 }
-window.toggleDarkMode = () => {
-    document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-};
 
 function updateUserInfoUI() {
     if (!state.user) return;
@@ -1016,7 +1039,6 @@ window.switchTab = (tab) => {
 
 // --- INITIALIZATION ---
 function main() {
-    initDarkMode();
     setupSocketListeners();
     ELEMENTS.messageForm.addEventListener('submit', sendMessage);
 

@@ -7,11 +7,7 @@
 }
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f9f9f9; /* Very light gray for light mode body */
     min-height: 100vh;
-}
-.dark body {
-    background-color: #121212; /* Deep dark gray/almost black for dark mode body */
 }
 /* Adjusted height for mobile where input fields take up more vertical space */
 #chat-window {
@@ -72,7 +68,6 @@ body {
     align-items: center;
     justify-content: center;
     padding: 8px 12px;
-    background-color: #4f46e5;
     color: white;
     border-radius: 8px;
     cursor: pointer;
@@ -89,9 +84,4 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     /* Fallback color */
-    background-color: #f9f9f9; /* Light mode default */
-}
-
-.dark .chat-background {
-    background-color: #121212; /* Dark mode default */
 }
